@@ -119,6 +119,64 @@ export const products: Product[] = [
     stock: 5,
     featured: true,
     tags: ['housing', 'coop', 'equipment']
+  },
+  {
+    id: '9',
+    name: 'Layer Chicks (50 Pack)',
+    category: 'chicks',
+    price: 5500,
+    discountPrice: 5000,
+    description: 'High-quality layer chicks from proven egg-laying breeds. These chicks are specially selected for their egg-laying potential and come vaccinated against common poultry diseases. Perfect for starting or expanding your egg production business.',
+    shortDescription: 'Premium layer chicks for commercial egg production.',
+    images: [
+      'https://images.pexels.com/photos/583677/pexels-photo-583677.jpeg',
+      'https://images.pexels.com/photos/1405930/pexels-photo-1405930.jpeg'
+    ],
+    stock: 10,
+    featured: true,
+    tags: ['layer', 'commercial', 'vaccinated']
+  },
+  {
+    id: '10',
+    name: 'Chicken Waterer (10L)',
+    category: 'products',
+    price: 1500,
+    description: 'Automatic chicken waterer with a 10-liter capacity. Features an innovative design that keeps water clean and prevents spillage. The automatic filling mechanism ensures your chickens always have access to fresh water.',
+    shortDescription: 'Automatic 10L waterer for clean, fresh water supply.',
+    images: [
+      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg',
+      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg'
+    ],
+    stock: 20,
+    tags: ['equipment', 'waterer', 'automatic']
+  },
+  {
+    id: '11',
+    name: 'Chicken Cuts Pack',
+    category: 'chicken',
+    price: 850,
+    description: 'Assorted chicken cuts including breasts, thighs, wings, and drumsticks. All pieces are cleaned and packaged separately for convenience. Perfect for families who prefer specific chicken parts or want variety in their meals.',
+    shortDescription: 'Assorted pack of fresh chicken cuts.',
+    images: [
+      'https://images.pexels.com/photos/616354/pexels-photo-616354.jpeg',
+      'https://images.pexels.com/photos/6294228/pexels-photo-6294228.jpeg'
+    ],
+    stock: 30,
+    tags: ['cuts', 'fresh', 'assorted']
+  },
+  {
+    id: '12',
+    name: 'Poultry Vitamin Supplement',
+    category: 'products',
+    price: 800,
+    description: 'Essential vitamin and mineral supplement for poultry health. This comprehensive formula supports immune system function, egg production, and overall bird health. Easy to mix with water or feed.',
+    shortDescription: 'Complete vitamin supplement for poultry health.',
+    images: [
+      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg',
+      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg'
+    ],
+    stock: 50,
+    tags: ['supplements', 'vitamins', 'health']
   }
 ];
 
