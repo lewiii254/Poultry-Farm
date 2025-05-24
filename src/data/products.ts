@@ -3,12 +3,12 @@ import { Product } from '../types';
 export const products: Product[] = [
   {
     id: '1',
-    name: 'Day-Old Chicks',
+    name: 'Day-Old Broiler Chicks',
     category: 'chicks',
     price: 120,
     discountPrice: 100,
-    description: 'Healthy day-old chicks from our carefully selected breeds. These chicks are vaccinated against common diseases and ready to be raised in your farm or backyard. We offer a variety of breeds suitable for different purposes, whether you\'re looking for layers or broilers.',
-    shortDescription: 'Healthy, vaccinated day-old chicks for your farm or backyard.',
+    description: 'Healthy day-old broiler chicks from our carefully selected breeds. These chicks are vaccinated against common diseases and ready to be raised in your farm or backyard. Perfect for meat production with fast growth rates.',
+    shortDescription: 'Vaccinated day-old broiler chicks for meat production.',
     images: [
       'https://images.pexels.com/photos/583677/pexels-photo-583677.jpeg',
       'https://images.pexels.com/photos/1405930/pexels-photo-1405930.jpeg'
@@ -19,17 +19,19 @@ export const products: Product[] = [
   },
   {
     id: '2',
-    name: 'Two-Week Old Chicks',
+    name: 'Day-Old Layer Chicks',
     category: 'chicks',
-    price: 200,
-    description: 'Two-week old chicks that have passed the critical early stage. These chicks have been properly vaccinated and are growing well. Perfect for those who want to skip the most delicate period of chick raising while still enjoying the experience of raising chickens from a young age.',
-    shortDescription: 'Vaccinated two-week old chicks, perfect for beginners.',
+    price: 130,
+    discountPrice: 110,
+    description: 'Premium day-old layer chicks from high-performing egg-laying breeds. Fully vaccinated and ready for raising. These chicks are perfect for starting your egg production business.',
+    shortDescription: 'Vaccinated day-old layer chicks for egg production.',
     images: [
       'https://images.pexels.com/photos/583677/pexels-photo-583677.jpeg',
       'https://images.pexels.com/photos/1405930/pexels-photo-1405930.jpeg'
     ],
-    stock: 30,
-    tags: ['broiler', 'vaccinated']
+    stock: 40,
+    featured: true,
+    tags: ['layer', 'day-old', 'vaccinated']
   },
   {
     id: '3',
@@ -52,7 +54,7 @@ export const products: Product[] = [
     name: 'Kienyeji Eggs (Tray of 30)',
     category: 'eggs',
     price: 600,
-    description: 'Premium kienyeji (indigenous) eggs from our traditional breed hens. These eggs have that authentic taste and rich, orange yolks that you can\'t find in commercial eggs. Perfect for special dishes where egg flavor is important.',
+    description: 'Premium kienyeji (indigenous) eggs from our traditional breed hens. These eggs have that authentic taste and rich, orange yolks that you cannot find in commercial eggs. Perfect for special dishes where egg flavor is important.',
     shortDescription: 'Traditional kienyeji eggs with rich flavor, tray of 30.',
     images: [
       'https://images.pexels.com/photos/7129154/pexels-photo-7129154.jpeg',
@@ -63,7 +65,7 @@ export const products: Product[] = [
   },
   {
     id: '5',
-    name: 'Whole Broiler Chicken (1.5kg)',
+    name: 'Fresh Whole Broiler (1.5kg)',
     category: 'chicken',
     price: 650,
     description: 'Fresh, whole broiler chicken raised on our farm. Each chicken weighs approximately 1.5kg and is cleaned and ready for cooking. Our broilers are raised in a clean environment and fed a balanced diet for the best quality meat.',
@@ -78,7 +80,7 @@ export const products: Product[] = [
   },
   {
     id: '6',
-    name: 'Free-Range Kienyeji Chicken (1.2kg)',
+    name: 'Kienyeji Chicken (1.2kg)',
     category: 'chicken',
     price: 950,
     description: 'Traditional kienyeji chicken raised free-range on our farm. These chickens have a superior taste and firmer texture compared to commercial broilers. Perfect for traditional dishes where authentic chicken flavor is desired.',
@@ -92,91 +94,95 @@ export const products: Product[] = [
   },
   {
     id: '7',
-    name: 'Organic Chicken Feed (10kg)',
+    name: 'Premium Chicken Feed (10kg)',
     category: 'products',
     price: 1200,
-    description: 'Premium organic chicken feed formulated for optimal nutrition and health. This balanced feed contains the right mix of proteins, carbohydrates, vitamins, and minerals to keep your chickens healthy and productive. Suitable for layers and broilers.',
-    shortDescription: 'Premium organic chicken feed for healthy, productive birds.',
+    description: 'High-quality chicken feed formulated for optimal nutrition and health. Contains the perfect balance of proteins, vitamins, and minerals for healthy growth and egg production.',
+    shortDescription: 'Premium chicken feed for optimal growth and health.',
     images: [
       'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg',
       'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg'
     ],
     stock: 40,
-    tags: ['organic', 'feed', 'nutrition']
+    tags: ['feed', 'nutrition', 'health']
   },
   {
     id: '8',
-    name: 'Chicken Coop (Medium)',
+    name: 'Modern Chicken Coop',
     category: 'products',
     price: 12000,
     discountPrice: 10500,
-    description: 'Well-designed medium-sized chicken coop suitable for 8-12 chickens. This durable coop includes nesting boxes, roosting perches, and a secure run area to protect your chickens from predators. Made from treated wood and galvanized wire mesh for longevity.',
-    shortDescription: 'Medium-sized chicken coop for 8-12 birds, with nesting boxes and secure run.',
+    description: 'Modern, well-ventilated chicken coop suitable for 8-12 chickens. Features nesting boxes, roosting perches, and a secure run area. Made from durable materials for long-lasting use.',
+    shortDescription: 'Modern chicken coop with nesting boxes and secure run.',
     images: [
       'https://images.pexels.com/photos/8533272/pexels-photo-8533272.jpeg',
       'https://images.pexels.com/photos/8533272/pexels-photo-8533272.jpeg'
     ],
     stock: 5,
     featured: true,
-    tags: ['housing', 'coop', 'equipment']
+    tags: ['housing', 'equipment']
   },
   {
     id: '9',
-    name: 'Layer Chicks (50 Pack)',
-    category: 'chicks',
-    price: 5500,
-    discountPrice: 5000,
-    description: 'High-quality layer chicks from proven egg-laying breeds. These chicks are specially selected for their egg-laying potential and come vaccinated against common poultry diseases. Perfect for starting or expanding your egg production business.',
-    shortDescription: 'Premium layer chicks for commercial egg production.',
+    name: 'Automatic Chicken Feeder',
+    category: 'products',
+    price: 2500,
+    discountPrice: 2200,
+    description: 'Automatic chicken feeder with 5kg capacity. Reduces waste and keeps feed clean and dry. Perfect for busy farmers who want to ensure their chickens are fed regularly.',
+    shortDescription: 'Automatic 5kg capacity chicken feeder.',
     images: [
-      'https://images.pexels.com/photos/583677/pexels-photo-583677.jpeg',
-      'https://images.pexels.com/photos/1405930/pexels-photo-1405930.jpeg'
+      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg',
+      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg'
     ],
-    stock: 10,
+    stock: 15,
     featured: true,
-    tags: ['layer', 'commercial', 'vaccinated']
+    tags: ['equipment', 'automatic']
   },
   {
     id: '10',
     name: 'Chicken Waterer (10L)',
     category: 'products',
     price: 1500,
-    description: 'Automatic chicken waterer with a 10-liter capacity. Features an innovative design that keeps water clean and prevents spillage. The automatic filling mechanism ensures your chickens always have access to fresh water.',
+    description: 'Automatic chicken waterer with 10-liter capacity. Features an innovative design that keeps water clean and prevents spillage. Ensures your chickens always have access to fresh water.',
     shortDescription: 'Automatic 10L waterer for clean, fresh water supply.',
     images: [
       'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg',
       'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg'
     ],
     stock: 20,
-    tags: ['equipment', 'waterer', 'automatic']
+    tags: ['equipment', 'waterer']
   },
   {
     id: '11',
-    name: 'Chicken Cuts Pack',
+    name: 'Premium Chicken Cuts Pack',
     category: 'chicken',
     price: 850,
-    description: 'Assorted chicken cuts including breasts, thighs, wings, and drumsticks. All pieces are cleaned and packaged separately for convenience. Perfect for families who prefer specific chicken parts or want variety in their meals.',
+    discountPrice: 800,
+    description: 'Assorted pack of premium chicken cuts including breasts, thighs, wings, and drumsticks. All pieces are cleaned and individually packed for convenience. Perfect for families who enjoy variety.',
     shortDescription: 'Assorted pack of fresh chicken cuts.',
     images: [
       'https://images.pexels.com/photos/616354/pexels-photo-616354.jpeg',
       'https://images.pexels.com/photos/6294228/pexels-photo-6294228.jpeg'
     ],
     stock: 30,
+    featured: true,
     tags: ['cuts', 'fresh', 'assorted']
   },
   {
     id: '12',
-    name: 'Poultry Vitamin Supplement',
+    name: 'Poultry Health Kit',
     category: 'products',
-    price: 800,
-    description: 'Essential vitamin and mineral supplement for poultry health. This comprehensive formula supports immune system function, egg production, and overall bird health. Easy to mix with water or feed.',
-    shortDescription: 'Complete vitamin supplement for poultry health.',
+    price: 2800,
+    discountPrice: 2500,
+    description: 'Complete poultry health kit containing essential vitamins, minerals, and basic medications. Includes a guide for common poultry health issues and their treatment.',
+    shortDescription: 'Essential health kit for poultry care.',
     images: [
       'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg',
       'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg'
     ],
-    stock: 50,
-    tags: ['supplements', 'vitamins', 'health']
+    stock: 25,
+    featured: true,
+    tags: ['health', 'medicine', 'care']
   }
 ];
 
