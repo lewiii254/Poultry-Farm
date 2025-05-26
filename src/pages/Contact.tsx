@@ -13,6 +13,21 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    
+    // Submit form using formsubmit.co
+    form.action = "https://formsubmit.co/ngondimarklewis@gmail.com";
+    form.method = "POST";
+    
+    // Add formsubmit configuration
+    const formConfig = document.createElement('input');
+    formConfig.type = 'hidden';
+    formConfig.name = '_next';
+    formConfig.value = window.location.href;
+    form.appendChild(formConfig);
+    
+    form.submit();
+    
     toast.success('Message sent successfully! We will get back to you soon.');
     setFormData({
       name: '',
