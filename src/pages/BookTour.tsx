@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, Users, Send } from 'lucide-react';
+import { Calendar, Clock, Users, Send, Check } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const BookTour: React.FC = () => {
