@@ -79,6 +79,15 @@ const Navbar: React.FC = () => {
             </NavLink>
             
             <NavLink 
+              to="/book-tour" 
+              className={({ isActive }) => 
+                isActive ? "text-amber-600 font-medium" : "text-gray-700 hover:text-amber-600 transition-colors"
+              }
+            >
+              Book Tour
+            </NavLink>
+            
+            <NavLink 
               to="/contact" 
               className={({ isActive }) => 
                 isActive ? "text-amber-600 font-medium" : "text-gray-700 hover:text-amber-600 transition-colors"
@@ -203,6 +212,18 @@ const Navbar: React.FC = () => {
             </NavLink>
             
             <NavLink 
+              to="/book-tour" 
+              className={({ isActive }) => 
+                isActive 
+                  ? "block py-2 text-amber-600 font-medium" 
+                  : "block py-2 text-gray-700 hover:text-amber-600"
+              }
+              onClick={closeMobileMenu}
+            >
+              Book Tour
+            </NavLink>
+            
+            <NavLink 
               to="/contact" 
               className={({ isActive }) => 
                 isActive 
@@ -228,6 +249,6 @@ const Navbar: React.FC = () => {
       </div>
     </header>
   );
-};
+}
 
 export default Navbar;

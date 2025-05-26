@@ -23,40 +23,23 @@ const Hero: React.FC = () => {
                 Shop Now <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
               <Link
-                to="/about"
+                to="/book-tour"
                 className="px-6 py-3 bg-white text-amber-600 font-medium rounded-md border border-amber-600 transition-colors hover:bg-amber-50"
               >
-                Learn More
+                Book Farm Tour
               </Link>
             </div>
           </div>
           
-          {/* Image Grid */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-4">
-              <img
-                src="https://images.pexels.com/photos/583677/pexels-photo-583677.jpeg"
-                alt="Day-old chicks"
-                className="rounded-lg shadow-lg w-full h-48 object-cover"
-              />
-              <img
-                src="https://images.pexels.com/photos/162712/egg-white-food-protein-162712.jpeg"
-                alt="Fresh farm eggs"
-                className="rounded-lg shadow-lg w-full h-64 object-cover"
-              />
-            </div>
-            <div className="space-y-4 mt-8">
-              <img
-                src="https://images.pexels.com/photos/2255459/pexels-photo-2255459.jpeg"
-                alt="Our poultry farm"
-                className="rounded-lg shadow-lg w-full h-64 object-cover"
-              />
-              <img
-                src="https://images.pexels.com/photos/6294361/pexels-photo-6294361.jpeg"
-                alt="Quality eggs"
-                className="rounded-lg shadow-lg w-full h-48 object-cover"
-              />
-            </div>
+          {/* Hero Image */}
+          <div className="relative">
+            <img
+              src="https://images.pexels.com/photos/2255459/pexels-photo-2255459.jpeg"
+              alt="Our Poultry Farm"
+              className="rounded-lg shadow-2xl w-full h-[500px] object-cover"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-600/20 to-transparent rounded-lg"></div>
           </div>
         </div>
       </div>
