@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ErrorBoundary from './components/common/ErrorBoundary';
+import ChatWidget from './components/common/ChatWidget';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { PageSkeleton } from './components/common/Skeleton';
@@ -77,6 +78,8 @@ function App() {
                   duration: 3000,
                 }}
               />
+              {/* AI Chat Widget */}
+              <ChatWidget />
             </Router>
           </CartProvider>
         </AuthProvider>
