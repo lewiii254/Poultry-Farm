@@ -10,8 +10,8 @@ export const products: Product[] = [
     description: 'Healthy day-old broiler chicks from our carefully selected breeds. These chicks are vaccinated against common diseases and ready to be raised in your farm or backyard. Perfect for meat production with fast growth rates.',
     shortDescription: 'Vaccinated day-old broiler chicks for meat production.',
     images: [
-      'https://images.pexels.com/photos/583677/pexels-photo-583677.jpeg',
-      'https://images.pexels.com/photos/1405930/pexels-photo-1405930.jpeg'
+      '/chicks.jpeg',
+      '/broilers.jpg'
     ],
     stock: 50,
     featured: true,
@@ -26,8 +26,8 @@ export const products: Product[] = [
     description: 'Premium day-old layer chicks from high-performing egg-laying breeds. Fully vaccinated and ready for raising. These chicks are perfect for starting your egg production business.',
     shortDescription: 'Vaccinated day-old layer chicks for egg production.',
     images: [
-      'https://images.pexels.com/photos/583677/pexels-photo-583677.jpeg',
-      'https://images.pexels.com/photos/1405930/pexels-photo-1405930.jpeg'
+      '/exlayers.jpeg',
+      '/layers.jpg'
     ],
     stock: 40,
     featured: true,
@@ -42,8 +42,8 @@ export const products: Product[] = [
     description: 'Free-range, farm-fresh eggs from our happy, healthy hens. Each tray contains 30 eggs of mixed sizes, predominantly large. Our hens are fed a natural diet supplemented with quality grains to ensure the best taste and nutrition in every egg.',
     shortDescription: 'Farm-fresh eggs from free-range hens, tray of 30.',
     images: [
-      'https://images.pexels.com/photos/162712/egg-white-food-protein-162712.jpeg',
-      'https://images.pexels.com/photos/6294361/pexels-photo-6294361.jpeg'
+      '/eggs.jpg',
+      '/egg.jpg'
     ],
     stock: 100,
     featured: true,
@@ -57,8 +57,8 @@ export const products: Product[] = [
     description: 'Premium kienyeji (indigenous) eggs from our traditional breed hens. These eggs have that authentic taste and rich, orange yolks that you cannot find in commercial eggs. Perfect for special dishes where egg flavor is important.',
     shortDescription: 'Traditional kienyeji eggs with rich flavor, tray of 30.',
     images: [
-      'https://images.pexels.com/photos/7129154/pexels-photo-7129154.jpeg',
-      'https://images.pexels.com/photos/6294361/pexels-photo-6294361.jpeg'
+      '/layersegg.jpg',
+      '/eggs.jpg'
     ],
     stock: 50,
     tags: ['kienyeji', 'indigenous', 'premium']
@@ -71,8 +71,8 @@ export const products: Product[] = [
     description: 'Fresh, whole broiler chicken raised on our farm. Each chicken weighs approximately 1.5kg and is cleaned and ready for cooking. Our broilers are raised in a clean environment and fed a balanced diet for the best quality meat.',
     shortDescription: 'Fresh whole broiler chicken, approx 1.5kg, cleaned and ready to cook.',
     images: [
-      'https://images.pexels.com/photos/616354/pexels-photo-616354.jpeg',
-      'https://images.pexels.com/photos/6294228/pexels-photo-6294228.jpeg'
+      '/broilers.jpg',
+      '/chickens.jpg'
     ],
     stock: 25,
     featured: true,
@@ -86,8 +86,8 @@ export const products: Product[] = [
     description: 'Traditional kienyeji chicken raised free-range on our farm. These chickens have a superior taste and firmer texture compared to commercial broilers. Perfect for traditional dishes where authentic chicken flavor is desired.',
     shortDescription: 'Traditional free-range kienyeji chicken with authentic flavor.',
     images: [
-      'https://images.pexels.com/photos/616354/pexels-photo-616354.jpeg',
-      'https://images.pexels.com/photos/616354/pexels-photo-616354.jpeg'
+      '/hen.jpg',
+      '/cockerel2.jpg'
     ],
     stock: 15,
     tags: ['kienyeji', 'free-range', 'traditional']
@@ -100,8 +100,8 @@ export const products: Product[] = [
     description: 'High-quality chicken feed formulated for optimal nutrition and health. Contains the perfect balance of proteins, vitamins, and minerals for healthy growth and egg production.',
     shortDescription: 'Premium chicken feed for optimal growth and health.',
     images: [
-      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg',
-      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg'
+      '/shapes.jpeg',
+      '/manure.jpg'
     ],
     stock: 40,
     tags: ['feed', 'nutrition', 'health']
@@ -115,8 +115,8 @@ export const products: Product[] = [
     description: 'Modern, well-ventilated chicken coop suitable for 8-12 chickens. Features nesting boxes, roosting perches, and a secure run area. Made from durable materials for long-lasting use.',
     shortDescription: 'Modern chicken coop with nesting boxes and secure run.',
     images: [
-      'https://images.pexels.com/photos/8533272/pexels-photo-8533272.jpeg',
-      'https://images.pexels.com/photos/8533272/pexels-photo-8533272.jpeg'
+      '/poultry.jpg',
+      '/chickens.jpg'
     ],
     stock: 5,
     featured: true,
@@ -131,8 +131,8 @@ export const products: Product[] = [
     description: 'Automatic chicken feeder with 5kg capacity. Reduces waste and keeps feed clean and dry. Perfect for busy farmers who want to ensure their chickens are fed regularly.',
     shortDescription: 'Automatic 5kg capacity chicken feeder.',
     images: [
-      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg',
-      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg'
+      '/feeder.jpeg',
+      '/feeder1.jpeg'
     ],
     stock: 15,
     featured: true,
@@ -146,8 +146,8 @@ export const products: Product[] = [
     description: 'Automatic chicken waterer with 10-liter capacity. Features an innovative design that keeps water clean and prevents spillage. Ensures your chickens always have access to fresh water.',
     shortDescription: 'Automatic 10L waterer for clean, fresh water supply.',
     images: [
-      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg',
-      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg'
+      '/drinker1.jpeg',
+      '/drinker2.jpeg'
     ],
     stock: 20,
     tags: ['equipment', 'waterer']
@@ -161,8 +161,8 @@ export const products: Product[] = [
     description: 'Assorted pack of premium chicken cuts including breasts, thighs, wings, and drumsticks. All pieces are cleaned and individually packed for convenience. Perfect for families who enjoy variety.',
     shortDescription: 'Assorted pack of fresh chicken cuts.',
     images: [
-      'https://images.pexels.com/photos/616354/pexels-photo-616354.jpeg',
-      'https://images.pexels.com/photos/6294228/pexels-photo-6294228.jpeg'
+      '/broilers.jpg',
+      '/chickens.jpg'
     ],
     stock: 30,
     featured: true,
@@ -177,12 +177,71 @@ export const products: Product[] = [
     description: 'Complete poultry health kit containing essential vitamins, minerals, and basic medications. Includes a guide for common poultry health issues and their treatment.',
     shortDescription: 'Essential health kit for poultry care.',
     images: [
-      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg',
-      'https://images.pexels.com/photos/8774487/pexels-photo-8774487.jpeg'
+      '/vacc.jpeg',
+      '/VSS.png'
     ],
     stock: 25,
     featured: true,
     tags: ['health', 'medicine', 'care']
+  },
+  {
+    id: '13',
+    name: 'Professional Feeder System',
+    category: 'products',
+    price: 3200,
+    discountPrice: 2800,
+    description: 'Professional-grade feeding system designed for commercial and semi-commercial operations. Features multiple feeding points and waste reduction technology.',
+    shortDescription: 'Professional feeding system for efficient operations.',
+    images: [
+      '/feeder2.jpeg',
+      '/feeder1.jpeg'
+    ],
+    stock: 10,
+    tags: ['professional', 'commercial', 'equipment']
+  },
+  {
+    id: '14',
+    name: 'Organic Chicken Manure (25kg)',
+    category: 'products',
+    price: 800,
+    description: 'Premium organic chicken manure, perfect for gardening and farming. Rich in nutrients and properly composted to eliminate harmful bacteria while retaining beneficial nutrients for plants.',
+    shortDescription: 'Premium organic chicken manure for gardening.',
+    images: [
+      '/manure.jpg',
+      '/shapes.jpeg'
+    ],
+    stock: 60,
+    tags: ['organic', 'fertilizer', 'gardening']
+  },
+  {
+    id: '15',
+    name: 'Premium Honey (500ml)',
+    category: 'products',
+    price: 1200,
+    discountPrice: 1000,
+    description: 'Pure, natural honey harvested from our beehives. This golden honey is raw and unprocessed, retaining all its natural enzymes, antioxidants, and health benefits.',
+    shortDescription: 'Pure natural honey, raw and unprocessed.',
+    images: [
+      '/honey.jpg',
+      '/honey (1).jpg'
+    ],
+    stock: 30,
+    featured: true,
+    tags: ['honey', 'natural', 'organic']
+  },
+  {
+    id: '16',
+    name: 'Mobile Payment System',
+    category: 'products',
+    price: 0,
+    description: 'Convenient mobile payment options including M-Pesa and other digital payment methods for easy and secure transactions.',
+    shortDescription: 'Secure mobile payment solutions.',
+    images: [
+      '/mpesa.png',
+      '/sat.png'
+    ],
+    stock: 999,
+    tags: ['payment', 'mpesa', 'digital']
   }
 ];
 
