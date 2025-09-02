@@ -3,6 +3,7 @@ import Hero from '../components/home/Hero';
 import FeaturedProducts from '../components/home/FeaturedProducts';
 import Categories from '../components/home/Categories';
 import Features from '../components/home/Features';
+import ServicesPreview from '../components/home/ServicesPreview';
 import Testimonials from '../components/home/Testimonials';
 import SEO from '../components/common/SEO';
 import { ArrowRight } from 'lucide-react';
@@ -23,6 +24,8 @@ const Home: React.FC = () => {
       <FeaturedProducts />
       
       <Categories />
+      
+      <ServicesPreview />
       
       <div className="bg-amber-600 py-16">
         <div className="container mx-auto px-4 text-center">

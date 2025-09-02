@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
           {/* Hero Image */}
           <div className="relative">
             <img
-              src="https://images.pexels.com/photos/2255459/pexels-photo-2255459.jpeg"
+              src="/slide1.jpg"
               alt="Our Poultry Farm"
               className="rounded-lg shadow-2xl w-full h-[500px] object-cover"
               loading="eager"
