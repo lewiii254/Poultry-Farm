@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, ArrowRight } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { Product } from '../../types';
 import { useCart } from '../../context/CartContext';
+import OptimizedImage from './OptimizedImage';
 
 interface ProductCardProps {
   product: Product;
@@ -21,10 +22,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <div className="group bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
       <Link to={`/product/${product.id}`} className="block">
         <div className="relative pb-[75%] overflow-hidden">
-          <img
+          <OptimizedImage
             src={product.images[0]}
             alt={product.name}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            category={product.category}
+            productName={product.name}
+            loading="lazy"
           />
           {product.discountPrice && (
             <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">

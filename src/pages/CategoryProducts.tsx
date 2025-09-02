@@ -4,6 +4,7 @@ import { ArrowLeft, Filter, X } from 'lucide-react';
 import ProductCard from '../components/common/ProductCard';
 import { getProductsByCategory } from '../data/products';
 import { categories } from '../data/categories';
+import { Product } from '../types';
 
 const CategoryProducts: React.FC = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -11,11 +12,11 @@ const CategoryProducts: React.FC = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 20000]);
   const [filteredProducts, setFilteredProducts] = useState(
-    categoryId ? getProductsByCategory(categoryId as any) : []
+    categoryId ? getProductsByCategory(categoryId as Product['category']) : []
   );
   
   const category = categories.find((c) => c.id === categoryId);
-  const products = categoryId ? getProductsByCategory(categoryId as any) : [];
+  const products = categoryId ? getProductsByCategory(categoryId as Product['category']) : [];
   
   // Apply sorting and filtering
   useEffect(() => {
