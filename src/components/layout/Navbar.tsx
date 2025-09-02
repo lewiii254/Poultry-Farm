@@ -4,6 +4,7 @@ import { ShoppingCart, User, Menu, X, ChevronDown } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import { categories } from '../../data/categories';
+import SearchBar from '../common/SearchBar';
 
 const Navbar: React.FC = () => {
   const { totalItems } = useCart();
@@ -97,6 +98,11 @@ const Navbar: React.FC = () => {
             </NavLink>
           </nav>
 
+          {/* Search Bar */}
+          <div className="hidden md:block flex-1 max-w-md mx-8">
+            <SearchBar />
+          </div>
+
           {/* User and Cart */}
           <div className="flex items-center space-x-4">
             <Link to="/cart" className="relative p-2">
@@ -171,6 +177,11 @@ const Navbar: React.FC = () => {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-4 py-4 border-t border-gray-200">
+            {/* Mobile Search Bar */}
+            <div className="mb-4">
+              <SearchBar />
+            </div>
+            
             <NavLink 
               to="/" 
               className={({ isActive }) => 

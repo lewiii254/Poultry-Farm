@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 const Checkout: React.FC = () => {
   const navigate = useNavigate();
   const { cart, subtotal, clearCart } = useCart();
-  const { user, isAuthenticated } = useAuth();
+  const { user } = useAuth();
   
   const [paymentMethod, setPaymentMethod] = useState<'mpesa' | 'cash'>('mpesa');
   const [showMpesaForm, setShowMpesaForm] = useState(false);

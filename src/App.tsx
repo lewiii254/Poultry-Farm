@@ -23,6 +23,7 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Delivery = lazy(() => import('./pages/Delivery'));
 const BookTour = lazy(() => import('./pages/BookTour'));
+const SearchResults = lazy(() => import('./pages/SearchResults'));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -59,6 +60,7 @@ function App() {
                   <Route path="/terms" element={<Terms />} />
                   <Route path="/delivery" element={<Delivery />} />
                   <Route path="/book-tour" element={<BookTour />} />
+                  <Route path="/search" element={<SearchResults />} />
                 </Routes>
               </Suspense>
             </main>
