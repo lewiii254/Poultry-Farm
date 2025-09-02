@@ -4,12 +4,20 @@ import FeaturedProducts from '../components/home/FeaturedProducts';
 import Categories from '../components/home/Categories';
 import Features from '../components/home/Features';
 import Testimonials from '../components/home/Testimonials';
+import SEO from '../components/common/SEO';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   return (
     <div>
+      <SEO 
+        title="Premium Poultry Products - Farm Fresh Quality"
+        description="Experience the finest quality poultry products delivered right to your doorstep in Kenya. From farm-fresh eggs to healthy chicks, we provide everything you need for your poultry farming success."
+        keywords="poultry products Kenya, farm fresh eggs, healthy chicks, chicken delivery, organic poultry, day-old chicks, broiler chicks, layer chicks, kienyeji chicken"
+        type="website"
+      />
+      
       <Hero />
       
       <FeaturedProducts />

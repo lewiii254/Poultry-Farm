@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Search, Filter, X, ArrowLeft } from 'lucide-react';
 import ProductCard from '../components/common/ProductCard';
+import SEO from '../components/common/SEO';
 import { products } from '../data/products';
 import { Product } from '../types';
 
@@ -81,19 +82,6 @@ const SearchResults: React.FC = () => {
     setFilteredResults(filtered);
   }, [results, selectedCategory, priceRange, sortOption]);
 
-  // Update document title for SEO
-  useEffect(() => {
-    if (query) {
-      document.title = `Search results for "${query}" | FarmFresh Poultry`;
-    } else {
-      document.title = 'Search | FarmFresh Poultry';
-    }
-    
-    return () => {
-      document.title = 'FarmFresh Poultry | Premium Poultry Products';
-    };
-  }, [query]);
-
   const clearFilters = () => {
     setSelectedCategory('all');
     setPriceRange([0, 20000]);
@@ -104,6 +92,12 @@ const SearchResults: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO 
+        title={query ? `Search results for "${query}"` : 'Search Products'}
+        description={query ? `Find ${query} products at FarmFresh Poultry. Browse our selection of premium poultry products with fast delivery across Kenya.` : 'Search for premium poultry products at FarmFresh Poultry. Find chicks, eggs, chicken, and farm supplies with advanced filtering and sorting.'}
+        keywords={query ? `${query}, poultry products, farm fresh, Kenya, buy ${query}` : 'search poultry products, farm fresh, eggs, chicks, chicken, Kenya'}
+      />
+      
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center mb-6">
