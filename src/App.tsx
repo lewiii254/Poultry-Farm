@@ -12,6 +12,9 @@ import { PageSkeleton } from './components/common/Skeleton';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
+const Products = lazy(() => import('./pages/Products'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const ProductDetails = lazy(() => import('./pages/ProductDetails'));
@@ -48,6 +51,9 @@ function App() {
                   <Suspense fallback={<PageLoader />}>
                     <Routes>
                       <Route path="/" element={<Home />} />
+                      <Route path="/products" element={<Products />} />
+                      <Route path="/blog" element={<Blog />} />
+                      <Route path="/blog/:postId" element={<BlogPost />} />
                       <Route path="/about" element={<About />} />
                       <Route path="/contact" element={<Contact />} />
                       <Route path="/product/:productId" element={<ProductDetails />} />
