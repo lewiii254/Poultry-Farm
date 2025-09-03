@@ -45,13 +45,23 @@ const Navbar: React.FC = () => {
               Home
             </NavLink>
             
+            {/* Products Link */}
+            <NavLink 
+              to="/products" 
+              className={({ isActive }) => 
+                isActive ? "text-amber-600 font-medium" : "text-gray-700 hover:text-amber-600 transition-colors"
+              }
+            >
+              All Products
+            </NavLink>
+            
             {/* Products Dropdown */}
             <div className="relative">
               <button 
                 className="flex items-center text-gray-700 hover:text-amber-600 transition-colors"
                 onClick={toggleDropdown}
               >
-                Products <ChevronDown className="ml-1 h-4 w-4" />
+                Categories <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               
               {dropdownOpen && (
@@ -77,6 +87,15 @@ const Navbar: React.FC = () => {
               }
             >
               About Us
+            </NavLink>
+            
+            <NavLink 
+              to="/blog" 
+              className={({ isActive }) => 
+                isActive ? "text-amber-600 font-medium" : "text-gray-700 hover:text-amber-600 transition-colors"
+              }
+            >
+              Blog
             </NavLink>
             
             <NavLink 
@@ -203,8 +222,20 @@ const Navbar: React.FC = () => {
               Home
             </NavLink>
             
+            <NavLink 
+              to="/products" 
+              className={({ isActive }) => 
+                isActive 
+                  ? "block py-2 text-amber-600 font-medium" 
+                  : "block py-2 text-gray-700 hover:text-amber-600"
+              }
+              onClick={closeMobileMenu}
+            >
+              All Products
+            </NavLink>
+            
             <div className="py-2">
-              <div className="font-medium text-gray-700 mb-2">Products</div>
+              <div className="font-medium text-gray-700 mb-2">Categories</div>
               <div className="pl-4 space-y-2">
                 {categories.map((category) => (
                   <Link 
@@ -229,6 +260,18 @@ const Navbar: React.FC = () => {
               onClick={closeMobileMenu}
             >
               About Us
+            </NavLink>
+            
+            <NavLink 
+              to="/blog" 
+              className={({ isActive }) => 
+                isActive 
+                  ? "block py-2 text-amber-600 font-medium" 
+                  : "block py-2 text-gray-700 hover:text-amber-600"
+              }
+              onClick={closeMobileMenu}
+            >
+              Blog
             </NavLink>
             
             <NavLink 
