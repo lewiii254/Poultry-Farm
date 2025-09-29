@@ -29,19 +29,6 @@ const MPesaPayment: React.FC<MPesaPaymentProps> = ({ amount, onComplete, onCance
     return patterns.some(pattern => pattern.test(cleanNumber));
   };
   
-  // Format phone number for display
-  const formatPhoneNumber = (number: string) => {
-    const cleanNumber = number.replace(/[\s-()]/g, '');
-    if (cleanNumber.startsWith('+254')) {
-      return cleanNumber;
-    } else if (cleanNumber.startsWith('254')) {
-      return '+' + cleanNumber;
-    } else if (cleanNumber.startsWith('0')) {
-      return '+254' + cleanNumber.substring(1);
-    }
-    return cleanNumber;
-  };
-  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
