@@ -97,7 +97,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '' }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleSelectProduct = (product: Product) => {
+  const handleSelectProduct = () => {
     setQuery('');
     setIsOpen(false);
     setSelectedIndex(-1);

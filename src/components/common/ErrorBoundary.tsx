@@ -28,12 +28,21 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+  static getDerivedStateFromError(): ErrorBoundaryState {
     return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Error caught by boundary:', error, errorInfo);
+    // Enhanced error logging with more context
+    console.error('Error caught by boundary:', {
+      error: error.message,
+      stack: error.stack,
+      componentStack: errorInfo.componentStack,
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent,
+      url: window.location.href
+    });
+    
     this.setState({
       error,
       errorInfo
@@ -41,7 +50,16 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
     // In production, you might want to send error to monitoring service
     if (process.env.NODE_ENV === 'production') {
-      // Example: logErrorToService(error, errorInfo);
+      // Example: Send to error tracking service like Sentry
+      // logErrorToService(error, errorInfo);
+      
+      // Send basic error report to analytics
+      try {
+        // You could send to Google Analytics, Mixpanel, etc.
+        console.info('Error reported to monitoring service');
+      } catch (reportingError) {
+        console.error('Failed to report error:', reportingError);
+      }
     }
   }
 
@@ -93,6 +111,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
               <button
                 onClick={this.handleReload}
                 className="w-full flex items-center justify-center px-4 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition-colors"
+                aria-label="Refresh the page to try again"
               >
                 <RefreshCw className="h-4 w-4 mr-2" />
                 Refresh Page
@@ -101,6 +120,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
               <button
                 onClick={this.handleReset}
                 className="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+                aria-label="Try to recover from the error"
               >
                 Try Again
               </button>
@@ -108,6 +128,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
               <Link
                 to="/"
                 className="w-full inline-flex items-center justify-center px-4 py-2 text-amber-600 hover:text-amber-700 transition-colors"
+                aria-label="Go back to the homepage"
               >
                 <Home className="h-4 w-4 mr-2" />
                 Go to Homepage

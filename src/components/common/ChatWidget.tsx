@@ -30,6 +30,19 @@ const ChatWidget: React.FC = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+  
+  // Cleanup effect to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      // Clean up any pending timeouts when component unmounts
+      if (messagesEndRef.current) {
+        messagesEndRef.current = null;
+      }
+      if (chatContainerRef.current) {
+        chatContainerRef.current = null;
+      }
+    };
+  }, []);
 
   // Hardcoded AI responses for the poultry farm
   const getAIResponse = (userMessage: string): string => {

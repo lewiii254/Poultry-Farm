@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Filter, X } from 'lucide-react';
+import { Filter, X } from 'lucide-react';
 import ProductCard from '../components/common/ProductCard';
 import { products } from '../data/products';
 import { categories } from '../data/categories';
