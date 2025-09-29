@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, Users, Shield, Phone, Mail, MapPin, Star } from 'lucide-react';
+import { Clock, Users, Shield, Phone, Star } from 'lucide-react';
 import SEO from '../components/common/SEO';
 
 const Services: React.FC = () => {

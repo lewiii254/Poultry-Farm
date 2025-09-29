@@ -13,36 +13,59 @@ const MPesaPayment: React.FC<MPesaPaymentProps> = ({ amount, onComplete, onCance
   const [status, setStatus] = useState<'idle' | 'pending' | 'success' | 'error'>('idle');
   const [error, setError] = useState('');
   
-  // Validate Kenyan phone number
+  // Enhanced Kenyan phone number validation
   const isValidPhoneNumber = (number: string) => {
-    // Basic validation for Kenyan phone numbers
-    // Can be +254XXXXXXXXX or 07XXXXXXXX or 01XXXXXXXX format
-    const regex = /^(?:\+254|0)[17]\d{8}$/;
-    return regex.test(number);
+    // Remove spaces and special characters
+    const cleanNumber = number.replace(/[\s-()]/g, '');
+    
+    // Comprehensive validation for Kenyan phone numbers
+    // Formats: +254XXXXXXXXX, 254XXXXXXXXX, 07XXXXXXXX, 01XXXXXXXX
+    const patterns = [
+      /^\+254[17]\d{8}$/, // +254XXXXXXXXX
+      /^254[17]\d{8}$/,   // 254XXXXXXXXX  
+      /^0[17]\d{8}$/      // 0XXXXXXXXX
+    ];
+    
+    return patterns.some(pattern => pattern.test(cleanNumber));
+  };
+  
+  // Format phone number for display
+  const formatPhoneNumber = (number: string) => {
+    const cleanNumber = number.replace(/[\s-()]/g, '');
+    if (cleanNumber.startsWith('+254')) {
+      return cleanNumber;
+    } else if (cleanNumber.startsWith('254')) {
+      return '+' + cleanNumber;
+    } else if (cleanNumber.startsWith('0')) {
+      return '+254' + cleanNumber.substring(1);
+    }
+    return cleanNumber;
   };
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!isValidPhoneNumber(phoneNumber)) {
-      setError('Please enter a valid Kenyan phone number');
+      setError('Please enter a valid Kenyan phone number (e.g., +254712345678, 0712345678)');
       return;
     }
     
     setLoading(true);
     setStatus('pending');
+    setError(''); // Clear any previous errors
     
     // Simulate M-Pesa STK push and payment
     setTimeout(() => {
       // 90% chance of success for demo purposes
       if (Math.random() < 0.9) {
         setStatus('success');
-        // Generate fake M-Pesa reference
-        const reference = 'MPESA' + Math.floor(Math.random() * 1000000000);
+        // Generate fake M-Pesa reference with timestamp
+        const timestamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 14);
+        const reference = 'MPESA' + timestamp + Math.floor(Math.random() * 1000);
         onComplete(reference);
       } else {
         setStatus('error');
-        setError('Payment failed. Please try again.');
+        setError('Payment failed. Please check your M-Pesa balance and try again, or contact M-Pesa customer support.');
       }
       setLoading(false);
     }, 3000);

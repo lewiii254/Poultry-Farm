@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, Users, Send, Check } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { APP_CONFIG, ERROR_MESSAGES, SUCCESS_MESSAGES } from '../utils/constants';
 
 const BookTour: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -12,34 +13,101 @@ const BookTour: React.FC = () => {
     groupSize: '1',
     message: ''
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Form validation
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = ERROR_MESSAGES.REQUIRED_FIELD;
+    } else if (formData.name.trim().length < APP_CONFIG.VALIDATION.NAME_MIN_LENGTH) {
+      newErrors.name = ERROR_MESSAGES.NAME_TOO_SHORT;
+    } else if (formData.name.trim().length > APP_CONFIG.VALIDATION.NAME_MAX_LENGTH) {
+      newErrors.name = ERROR_MESSAGES.NAME_TOO_LONG;
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = ERROR_MESSAGES.REQUIRED_FIELD;
+    } else if (!APP_CONFIG.VALIDATION.EMAIL.test(formData.email)) {
+      newErrors.email = ERROR_MESSAGES.INVALID_EMAIL;
+    }
+    
+    if (!formData.phone.trim()) {
+      newErrors.phone = ERROR_MESSAGES.REQUIRED_FIELD;
+    } else if (!APP_CONFIG.VALIDATION.KENYAN_PHONE.test(formData.phone.replace(/[\s-]/g, ''))) {
+      newErrors.phone = ERROR_MESSAGES.INVALID_PHONE;
+    }
+    
+    if (!formData.date) {
+      newErrors.date = ERROR_MESSAGES.REQUIRED_FIELD;
+    } else {
+      const selectedDate = new Date(formData.date);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (selectedDate < today) {
+        newErrors.date = ERROR_MESSAGES.FUTURE_DATE_REQUIRED;
+      }
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
     
-    // Submit form using formsubmit.co
-    form.action = "https://formsubmit.co/ngondimarklewis@gmail.com";
-    form.method = "POST";
+    if (!validateForm()) {
+      toast.error('Please fix the errors in the form');
+      return;
+    }
     
-    // Add formsubmit configuration
-    const formConfig = document.createElement('input');
-    formConfig.type = 'hidden';
-    formConfig.name = '_next';
-    formConfig.value = window.location.href;
-    form.appendChild(formConfig);
+    setIsSubmitting(true);
     
-    form.submit();
-    
-    toast.success('Tour booking request sent! We will contact you shortly.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      date: '',
-      time: '10:00',
-      groupSize: '1',
-      message: ''
-    });
+    try {
+      // Create a more secure form submission
+      const formDataToSubmit = new FormData();
+      
+      // Sanitize and add form data
+      formDataToSubmit.append('name', formData.name.trim());
+      formDataToSubmit.append('email', formData.email.trim().toLowerCase());
+      formDataToSubmit.append('phone', formData.phone.trim());
+      formDataToSubmit.append('date', formData.date);
+      formDataToSubmit.append('time', formData.time);
+      formDataToSubmit.append('groupSize', formData.groupSize);
+      formDataToSubmit.append('message', formData.message.trim());
+      formDataToSubmit.append('_subject', 'New Farm Tour Booking Request');
+      formDataToSubmit.append('_template', 'table');
+      
+      // Submit to formsubmit.co
+      const response = await fetch(`https://formsubmit.co/${APP_CONFIG.FORMS.CONTACT_EMAIL}`, {
+        method: 'POST',
+        body: formDataToSubmit
+      });
+      
+      if (response.ok) {
+        toast.success(SUCCESS_MESSAGES.TOUR_BOOKED);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          date: '',
+          time: '10:00',
+          groupSize: '1',
+          message: ''
+        });
+        setErrors({});
+      } else {
+        throw new Error('Failed to submit form');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast.error(ERROR_MESSAGES.FORM_SUBMISSION_FAILED);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -48,6 +116,14 @@ const BookTour: React.FC = () => {
       ...prev,
       [name]: value
     }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   return (
@@ -145,9 +221,14 @@ const BookTour: React.FC = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className={`w-full p-3 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                        errors.name ? 'border-red-500' : 'border-gray-300'
+                      }`}
                       required
                     />
+                    {errors.name && (
+                      <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+                    )}
                   </div>
 
                   <div>
@@ -160,9 +241,14 @@ const BookTour: React.FC = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className={`w-full p-3 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                        errors.email ? 'border-red-500' : 'border-gray-300'
+                      }`}
                       required
                     />
+                    {errors.email && (
+                      <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                    )}
                   </div>
 
                   <div>
@@ -175,9 +261,15 @@ const BookTour: React.FC = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      placeholder="e.g., 0712345678 or +254712345678"
+                      className={`w-full p-3 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                        errors.phone ? 'border-red-500' : 'border-gray-300'
+                      }`}
                       required
                     />
+                    {errors.phone && (
+                      <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
+                    )}
                   </div>
 
                   <div>
@@ -191,9 +283,14 @@ const BookTour: React.FC = () => {
                       value={formData.date}
                       onChange={handleChange}
                       min={new Date().toISOString().split('T')[0]}
-                      className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className={`w-full p-3 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                        errors.date ? 'border-red-500' : 'border-gray-300'
+                      }`}
                       required
                     />
+                    {errors.date && (
+                      <p className="mt-1 text-sm text-red-600">{errors.date}</p>
+                    )}
                   </div>
 
                   <div>
@@ -249,9 +346,15 @@ const BookTour: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="w-full py-3 px-4 bg-amber-600 text-white font-medium rounded-md hover:bg-amber-700 transition-colors flex items-center justify-center"
+                    disabled={isSubmitting}
+                    className={`w-full py-3 px-4 font-medium rounded-md transition-colors flex items-center justify-center ${
+                      isSubmitting 
+                        ? 'bg-gray-400 cursor-not-allowed' 
+                        : 'bg-amber-600 hover:bg-amber-700 text-white'
+                    }`}
                   >
-                    Book Tour <Send className="ml-2 h-4 w-4" />
+                    {isSubmitting ? 'Sending...' : 'Book Tour'} 
+                    {!isSubmitting && <Send className="ml-2 h-4 w-4" />}
                   </button>
                 </div>
               </form>
