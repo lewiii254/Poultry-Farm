@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { ShoppingCart, User, Menu, X, ChevronDown } from 'lucide-react';
+import { ShoppingCart, User, Menu, X, ChevronDown, Heart, Activity } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
 import { useAuth } from '../../context/AuthContext';
 import { categories } from '../../data/categories';
 import SearchBar from '../common/SearchBar';
 
 const Navbar: React.FC = () => {
   const { totalItems } = useCart();
+  const { wishlistCount } = useWishlist();
   const { isAuthenticated, user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -133,7 +135,28 @@ const Navbar: React.FC = () => {
 
           {/* User and Cart */}
           <div className="flex items-center space-x-4">
-            <Link to="/cart" className="relative p-2">
+            {/* Live Tracker Link */}
+            <Link 
+              to="/live-tracker" 
+              className="hidden md:flex items-center space-x-1 px-3 py-2 text-gray-700 hover:text-amber-600 transition-colors"
+              title="Live Stock Tracker"
+            >
+              <Activity className="w-5 h-5" />
+              <span className="text-sm font-medium">Live</span>
+            </Link>
+
+            {/* Wishlist Link */}
+            <Link to="/wishlist" className="relative p-2" title="My Wishlist">
+              <Heart className="w-6 h-6 text-gray-700 hover:text-red-500 transition-colors" />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
+
+            {/* Cart Link */}
+            <Link to="/cart" className="relative p-2" title="Shopping Cart">
               <ShoppingCart className="w-6 h-6 text-gray-700" />
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -308,6 +331,32 @@ const Navbar: React.FC = () => {
               onClick={closeMobileMenu}
             >
               Contact
+            </NavLink>
+            
+            <NavLink 
+              to="/wishlist" 
+              className={({ isActive }) => 
+                isActive 
+                  ? "flex items-center py-2 text-amber-600 font-medium" 
+                  : "flex items-center py-2 text-gray-700 hover:text-amber-600"
+              }
+              onClick={closeMobileMenu}
+            >
+              <Heart className="w-4 h-4 mr-2" />
+              Wishlist {wishlistCount > 0 && `(${wishlistCount})`}
+            </NavLink>
+            
+            <NavLink 
+              to="/live-tracker" 
+              className={({ isActive }) => 
+                isActive 
+                  ? "flex items-center py-2 text-amber-600 font-medium" 
+                  : "flex items-center py-2 text-gray-700 hover:text-amber-600"
+              }
+              onClick={closeMobileMenu}
+            >
+              <Activity className="w-4 h-4 mr-2" />
+              Live Tracker
             </NavLink>
             
             {!isAuthenticated && (

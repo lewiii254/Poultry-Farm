@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Heart } from 'lucide-react';
 import { Product } from '../../types';
 import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
 import OptimizedImage from './OptimizedImage';
+import toast from 'react-hot-toast';
 
 interface ProductCardProps {
   product: Product;
@@ -11,11 +13,26 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     addToCart(product, 1);
+    toast.success(`${product.name} added to cart!`);
+  };
+
+  const handleWishlistToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (isInWishlist(product.id)) {
+      removeFromWishlist(product.id);
+      toast.success(`${product.name} removed from wishlist!`);
+    } else {
+      addToWishlist(product);
+      toast.success(`${product.name} added to wishlist!`);
+    }
   };
   
   return (
@@ -35,6 +52,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               Sale
             </div>
           )}
+          
+          {/* Wishlist button */}
+          <button
+            onClick={handleWishlistToggle}
+            className="absolute top-2 right-2 p-2 bg-white/90 hover:bg-white rounded-full shadow-md transition-all duration-200"
+            aria-label="Add to wishlist"
+          >
+            <Heart 
+              className={`w-4 h-4 transition-colors ${
+                isInWishlist(product.id) 
+                  ? 'text-red-500 fill-current' 
+                  : 'text-gray-600 hover:text-red-500'
+              }`} 
+            />
+          </button>
         </div>
         
         <div className="p-4">
