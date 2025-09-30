@@ -245,18 +245,50 @@ Please use the [GitHub Issues](https://github.com/lewiii254/Poultry-Farm/issues)
 ## 🌍 Deployment
 
 ### **Vercel** (Recommended)
+This project includes a `vercel.json` configuration file that handles client-side routing for the Single Page Application (SPA). This ensures that all routes work correctly when users refresh the page or navigate directly to a specific URL.
+
 ```bash
 npm run build
 vercel --prod
 ```
 
+**Note**: The `vercel.json` file configures Vercel to always serve `index.html` for all routes, allowing React Router to handle navigation on the client side. This prevents 404 errors when refreshing pages or accessing routes directly.
+
 ### **Netlify**
+For Netlify deployment, you'll need to create a `_redirects` file in the `public` folder with the following content:
+```
+/*    /index.html   200
+```
+
+Then deploy:
 ```bash
 npm run build
 # Deploy the dist/ folder
 ```
 
 ### **Traditional Hosting**
+For traditional hosting (Apache, Nginx), configure your server to redirect all routes to `index.html`:
+
+**Apache (.htaccess)**:
+```apache
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+```
+
+**Nginx**:
+```nginx
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
+
+Then deploy:
 ```bash
 npm run build
 # Upload the dist/ folder to your web server
